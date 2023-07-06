@@ -5,14 +5,15 @@
 // Abstraction(Parents) class
 class Car
 {
-public:
+protected:
     // member variables
     std::string make;
     std::string name;
     int year;
 
+public:
     // construcrtor & destructor
-    Car() : make("HYUNDAR"), name("AVENTE"), year(2014) {}
+    Car() : make("HYUNDAI"), name("AVENTE"), year(2014) {}
     Car(std::string make, std::string name, int year) : make(make), name(name), year(year) {}
     ~Car() {}
 
@@ -33,11 +34,12 @@ void Car::drive()
 
 // Son Class1 
 class SportsCar : public Car{
-    public:
+    protected:
         // member variable
         int top_speed;
         int speed;
 
+    public:
         // constructor
         SportsCar(std::string make, std::string name, int year, int top_speed, int speed) 
             :  Car(make, name, year), top_speed(top_speed), speed(speed) {}
@@ -70,11 +72,12 @@ void SportsCar::accel(int power)
 
 // Son Class2
 class SUV : public Car{
-    public:
+    protected:
         // member variable
         double speed;
         int torque;
 
+    public:
         // constructor & destructor
         SUV(std::string make, std::string name, int year, int speed, int torque)
             : Car(make, name, year), speed(speed), torque(torque) {}
@@ -106,21 +109,27 @@ void SUV::accel(int power)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Colaborate Two Class(SportsCar, SUV) by using inheritance Class(Car)
 class SportSUV : public Car{
     protected:
+        // Declaring member variable as Object.(This is just declaring not calling the constructor)
         SportsCar Scar;
         SUV Suv;
 
     public:
-        int speed;
+        int speed; // need it because Car doesn't have this variable.
 
         // constructor & destructor
         SportSUV(std::string make, std::string name, int year, int top_speed, int speed, int torque)
             : Car(make, name, year), Scar(make, name, year, top_speed, speed), Suv(make, name, year, speed, torque) {}
+            // Car: Class name, Scar, Suv: Objects name
 
         ~SportSUV() {}
-
+        
+        // You have to declare it because this class is abstraction class's inheritance class.
         virtual void accel(int power);
+
+        std::string getName(){return this->name;}
 };
 
 
@@ -147,5 +156,10 @@ int main(){
     
     // Declare Object of SportSUV(Combinated Class)
     SportSUV Urus("Rambo", "Urus", 2023, 400, 0, 100);
-    std::cout << Urus.name <<'\n';
+    
+    
+    // std::cout << Urus.name <<'\n';
+    // -> Can't Do like this because The member variable of Parent's Class can't access out of the Inherited class.
+    // So I made a function access Parent's member variable in the Inherited class. 
+    std::cout << Urus.getName() <<'\n';
 }
