@@ -71,9 +71,8 @@ class SportsCar : public Car{
 //     this->top_speed = top_speed;
 // };
 
-SportsCar::SportsCar(std::string make, std::string name, int year, int top_speed)
+SportsCar::SportsCar(std::string make, std::string name, int year, int top_speed) : Car(make, name, year)
 {
-    Car(make, name, year);
     this->top_speed = top_speed;
 };
 
@@ -83,14 +82,6 @@ void SportsCar::drive()
     Car::drive();
     std::cout << "\tTop Speed: " << this->top_speed << '\n';
 }
-
-// SportsCar::SportsCar(std::string make, std::string name, int year, int top_speed)
-// {
-//     this->make = make;
-//     this->name = name;
-//     this->year = year;
-//     this->top_speed = top_speed;
-// }
 
 int main(){
     // Car car("BMW", "X5", 2023);

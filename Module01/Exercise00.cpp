@@ -32,10 +32,6 @@ public:
     void Display();
 };
 
-void Car::Display(){
-    std::cout << "Car's name: " << this->name << " / Maximum Speed: " << this->speed << '\n';
-}
-
 // Default Constructor
 Car::Car(std::string name, int speed)
 {
@@ -48,7 +44,8 @@ Car::Car(std::string name, int speed)
 Car::Car(const Car& origin_car)
 {
     std::cout<<"Copy Constructor is Called!\n";
-    this->name = origin_car.name;
+    // copy oirigin object's variable to new constructed object's variable
+    this->name = origin_car.name; 
     this->speed = origin_car.speed;
 }
 
@@ -56,6 +53,7 @@ Car::Car(const Car& origin_car)
 Car& Car::operator=(const Car& origin_car)
 {
     std::cout<<"Copy Assignment Operator is Called!\n";
+    // copy oirigin object's variable to new constructed object's variable
     this->name = origin_car.name;
     this->speed = origin_car.speed;
     return *this;
@@ -66,6 +64,11 @@ Car::~Car()
 {
     std::cout<<"Destructor Called!\n";
 }
+
+void Car::Display(){
+    std::cout << "Car's name: " << this->name << " / Maximum Speed: " << this->speed << '\n';
+}
+
 
 int main(){
 
@@ -78,12 +81,14 @@ int main(){
     car1.Display();
 
     // Copy Constructor
+    // It works when declare and copy at the same time.
     Car car2 = car1;
     car2.name = "BMW";
     car2.speed = 300;
     car2.Display();
 
     // Copy Assignment Operator
+    // It works when declare first, and copy later.
     Car car3;
     car3 = car1;
     car3.name = "HYUNDAI";
