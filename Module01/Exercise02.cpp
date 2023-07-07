@@ -2,17 +2,17 @@
 #include <string>
 #include <cmath>
 
-// Abstraction(Parents) class
+// Abstraction(Parents) class (Can not be declared this class as Object)
 class Car
 {
-protected:
-    // member variables
+protected: // Access Specifier
+    // Member variables
     std::string make;
     std::string name;
     int year;
 
-public:
-    // default construcrtor
+public: // Access Specifier
+    // Default construcrtor
     Car() : make("HYUNDAI"), name("AVENTE"), year(2014) {std::cout<<"Car Default constructor"<<'\n';}
     Car(std::string make, std::string name, int year) : make(make), name(name), year(year) {std::cout<<"Car Default constructor"<<'\n';}
 
@@ -23,17 +23,18 @@ public:
     // Copy Assignment Operator
     Car& operator=(const Car& car) {std::cout << "Car Copy Assignmnet Operator" << '\n'; return *this = car;};
 
-    // destructor
+    // Destructor
     ~Car() {}
 
-    // member function
+    // Member function
     void drive();
 
-    // virtual member functions
+    // Virtual member functions(which is for Abstraction)
     virtual void accel(int power)=0;
 
 };
 
+// Define member function
 void Car::drive()
 {
     std::cout << "Make: " << this->make << "\tName: " << this->name << "\tYear: " << this->year;
@@ -41,14 +42,14 @@ void Car::drive()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Son Class1 
+// Child Class1 (By Inheritance) 
 class SportsCar : public Car{
-    protected:
+    protected: // Access Specifier
         // member variable
         int top_speed;
         int speed;
 
-    public:
+    public: // Access Specifier
         // Default Constructor
         SportsCar()
         : Car(), top_speed(0), speed(0) {std::cout<<"SportsCar Default constructor"<<'\n';};
@@ -72,7 +73,7 @@ class SportsCar : public Car{
         virtual void accel(int power);
 };
 
-// Define member function
+// Define member function (by using Parent's function)
 void SportsCar::drive()
 {
     std::cout<<'\n';
@@ -80,7 +81,7 @@ void SportsCar::drive()
     std::cout << "\tTop Speed: " << this->top_speed << '\n';
 }
 
-// Define member function
+// Re-define virtual member function
 void SportsCar::accel(int power)
 {
     std::cout << this->name << " is accelling!!\n";
@@ -90,14 +91,14 @@ void SportsCar::accel(int power)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Son Class2
+// Child Class2 (By Inheritance)
 class SUV : public Car{
-    protected:
+    protected: // Access Specifier
         // member variable
         double speed;
         int torque;
 
-    public:
+    public: // Access Specifier
         // default constructor
         SUV() : Car(), torque(0), speed(0) {std::cout<<"SUV Default constructor"<<'\n';};
         SUV(std::string make, std::string name, int year, int speed, int torque)
@@ -120,7 +121,7 @@ class SUV : public Car{
         virtual void accel(int power);
 };
 
-// Define member function
+// Define member function (by using Parent's function)
 void SUV::drive()
 {
     std::cout<<'\n';
@@ -128,8 +129,7 @@ void SUV::drive()
     std::cout << "\tTorque: " << this->torque << '\n';
 }
 
-
-// Define memver function
+// Re-define virtual member function
 void SUV::accel(int power)
 {
     std::cout << this->name << " is accelling!!\n";
@@ -139,10 +139,10 @@ void SUV::accel(int power)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Son class3
+// Simple Class
 class Trailer
 {
-public:
+public: // Access Specifier
     int weight;
     std::string type;
 
@@ -164,11 +164,12 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// mutiple inheritance class
+
+// Mutiple Inheritance Class
 
 class CampingCar : public SUV, public Trailer
 {
-public:
+public: // Access Specifier
     // Default Constructor
     CampingCar()
     : SUV(), Trailer() {std::cout<<"CampingCar Default constructor"<<'\n';};
@@ -184,22 +185,22 @@ public:
 
     // Destructor
     ~CampingCar() {std::cout<<"CampingCar Destructor called"<<'\n';};
-
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Colaborate Two Class(SportsCar, SUV) by using inheritance Class(Car)
 class SportSUV : public Car{
-    protected:
-        // Declaring member variable as Object.(This is just declaring not calling the constructor)
+    protected: // Access Specifier
+        // Declare member variable as Object.(This is just declaring not calling the constructor)
         SportsCar Scar;
         SUV Suv;
 
-    public:
+    public: // Access Specifier
         int speed; // need it because Car doesn't have this variable.
 
         // constructor & destructor
+        // Constructor of Car, Scar, Suv is called by this constructor!!!
         SportSUV(std::string make, std::string name, int year, int top_speed, int speed, int torque)
             : Car(make, name, year), Scar(make, name, year, top_speed, speed), Suv(make, name, year, speed, torque) {}
             // Car: Class name, Scar, Suv: Objects name
@@ -209,10 +210,11 @@ class SportSUV : public Car{
         // You have to declare it because this class is abstraction class's inheritance class.
         virtual void accel(int power);
 
+        // Function to check accessing to parent class's member variable.(Encapsulation)
         std::string getName(){return this->name;}
 };
 
-
+// Re-define virtual member function
 void SportSUV::accel(int power)
 {
     std::cout << this->name << " is accelling!!\n";
