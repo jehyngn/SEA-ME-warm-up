@@ -11,9 +11,17 @@ using namespace std;
 // }
 
 int main() {
-  int firstNum = 10;
-  int secondNum = 20;
+  // int firstNum = 10;
+  // int secondNum = 20;
 
+  // int *ptr = &firstNum;
+
+  // int &a = firstNum;
+  // int &b = secondNum;
+
+  // cout << *ptr;
+  // cout << a << '\n';
+  
   // cout << "Before swap: " << "\n";
   // cout << firstNum << secondNum << "\n";
 // cout << &firstNum <<' '<< &secondNum << "\n";
@@ -32,9 +40,16 @@ int main() {
 
 // cout << a_num1 <<' '<< a_num2 << "\n";
 
-  cout << "After swap: " << "\n";
+  // cout << "After swap: " << "\n";
 //   cout << &firstNum <<' '<< &secondNum << "\n";
-  cout << firstNum << secondNum << "\n";
+  // cout << firstNum << secondNum << "\n";
+
+  int x = 10;
+  int &y = x;
+  
+  cout << &x << '\t' << &y << '\n';
+  y = 20;
+  cout << x << '\t' << y << '\n';
 
   return 0;
 }
