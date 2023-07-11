@@ -41,24 +41,24 @@ int main(){
     // 1. Unique Pointer
 
     // Two form of declare unique pointer
-    std::unique_ptr<Car> car_ptr1(new Car());
+    // std::unique_ptr<Car> car_ptr1(new Car());
     std::unique_ptr<Car> car_ptr2 = std::make_unique<Car>("KIA", "EV6", 2022); // its recommended 
 
     // Same means but upper one is better(brief, readability)
-    car_ptr1->drive(); 
+    // car_ptr1->drive(); 
     (*car_ptr2).drive();
 
     // Move function
-    std::unique_ptr<Car> car_move_ptr;
-    car_move_ptr = move(car_ptr1);
-    car_move_ptr->drive();
+    // std::unique_ptr<Car> car_move_ptr;
+    // car_move_ptr = move(car_ptr);
+    // car_move_ptr->drive();
     // Below two line is not work because 'car_ptr1' is not a pointer anymore(the ownership is moved to 'car_move_ptr')
-    // car_ptr1->drive();
+     // car_ptr1->drive()
     // std::cout << car_ptr1->make; 
 
     auto copy_ptr = move(car_ptr2);
-    copy_ptr->drive();
-    // car_ptr2->drive();
+    // copy_ptr->drive();
+    car_ptr2->drive();
 
     std::cout << "=======================================\n";
 
