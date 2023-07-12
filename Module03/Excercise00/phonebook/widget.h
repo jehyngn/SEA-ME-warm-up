@@ -29,6 +29,8 @@ public slots:
     void refreshContact();
     void removeContact();
     void cancelContact();
+    void loadFromFile();
+    void saveToFile();
 
 private:
     int search_index;
@@ -40,6 +42,8 @@ private:
     QPushButton *removeButton;
     QPushButton *bookmarkButton;
     QPushButton *cancelButton;
+    QPushButton *saveButton;
+    QPushButton *loadButton;
 
     QLineEdit *nameLine;
     QLineEdit *phoneLine;

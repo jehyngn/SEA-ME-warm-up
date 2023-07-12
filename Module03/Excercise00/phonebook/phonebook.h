@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QString>
 #include <vector>
+#include <QDebug>
 
 class PhoneBook
 {
@@ -12,7 +13,7 @@ public:
     PhoneBook();
     ~PhoneBook();
 
-    int size();
+    int getSize();
 
     void add(Person person);
     bool is_name_in_list(QString oldname);
@@ -25,8 +26,9 @@ public:
     void bookmark();
 
 
-private:
-    std::vector<Person> PB;
+//private:
+//    std::vector<Person> PB;
+    QVector<Person> PB;
 };
 
 #endif // PHONEBOOK_H

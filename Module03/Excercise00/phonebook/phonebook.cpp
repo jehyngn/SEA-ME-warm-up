@@ -4,7 +4,7 @@ PhoneBook::PhoneBook() {}
 
 PhoneBook::~PhoneBook() {}
 
-int PhoneBook::size()
+int PhoneBook::getSize()
 {
     return (int)PB.size();
 }
@@ -17,7 +17,7 @@ void PhoneBook::add(Person person)
 bool PhoneBook::is_name_in_list(QString oldname)
 {
     for(int i=0;i<(int)PB.size();i++){
-        if (oldname == PB[i].name) return true;
+        if (oldname == (QString)PB[i].name) return true;
     }
     return false;
 }
@@ -48,7 +48,7 @@ bool PhoneBook::is_address_in_list(QString oldaddress)
 
 int PhoneBook::search(QString oldname)
 {
-    Person tempperson("","","","",false);
+    Person tempperson;
     for(int i=0;i<(int)PB.size();i++){
         if (oldname == PB[i].name) return i;
     }

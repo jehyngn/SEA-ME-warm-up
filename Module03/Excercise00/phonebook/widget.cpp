@@ -33,11 +33,20 @@ Widget::Widget(QWidget *parent)
     cancelButton = new QPushButton(tr("&CANCEL"));
     cancelButton->hide();
 
+    loadButton = new QPushButton(tr("&Load..."));
+    loadButton->setToolTip(tr("Load PhoneBook from a file"));
+    saveButton = new QPushButton(tr("&Save..."));
+    saveButton->setToolTip(tr("Save PhoneBook to a file"));
+    saveButton->setEnabled(false);
+
+
     connect(addButton, SIGNAL(clicked()), this, SLOT(addContact()));
     connect(searchButton, SIGNAL(clicked()), this, SLOT(searchContact()));
     connect(refreshButton, SIGNAL(clicked()), this, SLOT(refreshContact()));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeContact()));
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancelContact()));
+    connect(loadButton, SIGNAL(clicked()), this, SLOT(loadFromFile()));
+    connect(saveButton, SIGNAL(clicked()), this, SLOT(saveToFile()));
 
     QVBoxLayout *buttonLayout1 = new QVBoxLayout;
     buttonLayout1->addWidget(refreshButton);
@@ -49,6 +58,8 @@ Widget::Widget(QWidget *parent)
     buttonLayout2->addWidget(removeButton);
     buttonLayout2->addWidget(bookmarkButton);
     buttonLayout2->addWidget(cancelButton);
+    buttonLayout1->addWidget(loadButton);
+    buttonLayout1->addWidget(saveButton);
 
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addWidget(nameLabel,0,0);
@@ -159,6 +170,64 @@ void Widget::cancelContact()
     UpdateInterface(Initial);
 }
 
+void Widget::loadFromFile()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Open Address Book"), "",
+                                                    tr("Address Book (*.abk);;All Files (*)"));
+
+    if (fileName.isEmpty())
+        return;
+    else {
+
+        QFile file(fileName);
+
+        if (!file.open(QIODevice::ReadOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"),
+                                     file.errorString());
+            return;
+        }
+
+        QDataStream in(&file);
+        in.setVersion(QDataStream::Qt_4_5);
+        phonebook.PB.clear();
+        in >> phonebook.PB;
+
+        if (phonebook.PB.empty()) {
+            QMessageBox::information(this, tr("No PhoneBook in file"),
+                                     tr("The file you are attempting to open PhoneBook no PhoneBook."));
+        } else {
+            Person temp_person = phonebook.index_search(0);
+            nameLine->setText(temp_person.name);
+            phoneLine->setText(temp_person.phone);
+            emailLine->setText(temp_person.email);
+            addressText->setText(temp_person.address);
+        }
+    }
+}
+
+void Widget::saveToFile()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Save Address Book"), "",
+                                                    tr("Address Book (*.abk);;All Files (*)"));
+
+    if (fileName.isEmpty())
+        return;
+    else {
+        QFile file(fileName);
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"),
+                                     file.errorString());
+            return;
+        }
+
+        QDataStream out(&file);
+        out.setVersion(QDataStream::Qt_4_5);
+        out << phonebook.PB;
+    }
+}
+
 void Widget::UpdateInterface(Mode mode)
 {
     CurrentMode = mode;
@@ -166,6 +235,7 @@ void Widget::UpdateInterface(Mode mode)
     {
         case Initial:
             nameLine->setReadOnly(false);
+            nameLine->setFocus(Qt::OtherFocusReason);
             phoneLine->setReadOnly(false);
             emailLine->setReadOnly(false);
             addressText->setReadOnly(false);
@@ -177,7 +247,8 @@ void Widget::UpdateInterface(Mode mode)
 
             refreshButton->setEnabled(true);
             addButton->setEnabled(true);
-            searchButton->setEnabled(phonebook.size()>=2);
+            searchButton->setEnabled(phonebook.getSize()>=2);
+            saveButton->setEnabled(phonebook.getSize()>=1);
             removeButton->hide();
             cancelButton->hide();
             break;

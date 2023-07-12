@@ -397,7 +397,7 @@ void AddressBook::loadFromFile()
         in >> contacts;
 //! [loadFromFile() function part2]
 
-//! [loadFromFile() function part3]
+//! [loadFromFilce() function part3]
         if (contacts.isEmpty()) {
             QMessageBox::information(this, tr("No contacts in file"),
                 tr("The file you are attempting to open contains no contacts."));
