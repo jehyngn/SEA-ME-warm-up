@@ -14,13 +14,11 @@ public:
     QString email;
     QString address;
     bool bookmark;
-
     friend QDataStream& operator>>(QDataStream& in, Person& person) {
         in >> person.name;
         in >> person.phone;
         in >> person.email;
         in >> person.address;
-
         return in;
     }
 
@@ -29,7 +27,6 @@ public:
         out << person.phone;
         out << person.email;
         out << person.address;
-
         return out;
     }
 };

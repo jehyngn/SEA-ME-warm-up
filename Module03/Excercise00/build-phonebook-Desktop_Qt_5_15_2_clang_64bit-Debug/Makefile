@@ -209,6 +209,7 @@ DIST          = /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/spec_pre
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/spec_post.prf \
+		../phonebook/.qmake.stash \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/toolchain.prf \
@@ -413,6 +414,7 @@ Makefile: ../phonebook/phonebook.pro /Users/parkjaeheong/Qt/5.15.2/clang_64/mksp
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/toolchain.prf \
@@ -594,6 +596,7 @@ Makefile: ../phonebook/phonebook.pro /Users/parkjaeheong/Qt/5.15.2/clang_64/mksp
 /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/qt_config.prf:
 /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/parkjaeheong/Qt/5.15.2/clang_64/mkspecs/features/toolchain.prf:
@@ -668,6 +671,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r phonebook.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -894,7 +898,9 @@ widget.o: ../phonebook/widget.cpp ../phonebook/widget.h \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qwhatsthis.h \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
-		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h
+		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/parkjaeheong/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o ../phonebook/widget.cpp
 
 moc_widget.o: moc_widget.cpp 
