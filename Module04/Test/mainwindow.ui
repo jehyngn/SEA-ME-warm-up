@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>576</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/images/images/bg2.png);
+border: 0px 
+</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="CAR0">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>580</y>
+      <width>40</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url();
+background-color : none;
+color : blue;</string>
+    </property>
+    <property name="text">
+     <string>CAR0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CAR1">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>580</y>
+      <width>40</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url();
+background-color : none;
+color : red;</string>
+    </property>
+    <property name="text">
+     <string>CAR1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CAR2">
+    <property name="geometry">
+     <rect>
+      <x>51</x>
+      <y>580</y>
+      <width>40</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url();
+background-color : none;
+color : green;</string>
+    </property>
+    <property name="text">
+     <string>CAR2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CAR3">
+    <property name="geometry">
+     <rect>
+      <x>74</x>
+      <y>580</y>
+      <width>40</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url();
+background-color : none;
+color : yellow;</string>
+    </property>
+    <property name="text">
+     <string>CAR3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>576</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSetting">
+    <property name="title">
+     <string>Setting</string>
+    </property>
+    <addaction name="actionSTART"/>
+    <addaction name="actionPAUSE"/>
+    <addaction name="actionRESUME"/>
+    <addaction name="actionEXIT"/>
+   </widget>
+   <addaction name="menuSetting"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSTART">
+   <property name="text">
+    <string>START</string>
+   </property>
+  </action>
+  <action name="actionPAUSE">
+   <property name="text">
+    <string>PAUSE</string>
+   </property>
+  </action>
+  <action name="actionRESUME">
+   <property name="text">
+    <string>RESUME</string>
+   </property>
+  </action>
+  <action name="actionEXIT">
+   <property name="text">
+    <string>EXIT</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
