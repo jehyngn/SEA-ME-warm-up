@@ -25,7 +25,7 @@ border: 0px
    <widget class="QLabel" name="CAR0">
     <property name="geometry">
      <rect>
-      <x>5</x>
+      <x>20</x>
       <y>580</y>
       <width>40</width>
       <height>70</height>
@@ -43,7 +43,7 @@ color : blue;</string>
    <widget class="QLabel" name="CAR1">
     <property name="geometry">
      <rect>
-      <x>25</x>
+      <x>50</x>
       <y>580</y>
       <width>40</width>
       <height>70</height>
@@ -61,8 +61,8 @@ color : red;</string>
    <widget class="QLabel" name="CAR2">
     <property name="geometry">
      <rect>
-      <x>51</x>
-      <y>580</y>
+      <x>100</x>
+      <y>1000</y>
       <width>40</width>
       <height>70</height>
      </rect>
@@ -79,8 +79,8 @@ color : green;</string>
    <widget class="QLabel" name="CAR3">
     <property name="geometry">
      <rect>
-      <x>74</x>
-      <y>580</y>
+      <x>190</x>
+      <y>1000</y>
       <width>40</width>
       <height>70</height>
      </rect>
@@ -94,17 +94,17 @@ color : yellow;</string>
      <string>CAR3</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
+      <x>0</x>
+      <y>0</y>
       <width>100</width>
       <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>START</string>
     </property>
    </widget>
   </widget>

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //    Set Initial enable
     ui->actionSTART->setEnabled(true);
+    ui->startButton->setEnabled(true);
     ui->actionPAUSE->setEnabled(false);
     ui->actionRESUME->setEnabled(false);
     ui->actionEXIT->setEnabled(true);
@@ -44,12 +45,11 @@ MainWindow::MainWindow(QWidget *parent)
 //    Update By Qtimer(60fps)
     connect(test_game.m_timer, SIGNAL(timeout()), this, SLOT(gui_update()));
 
-//    connect(ui->actionSTART,  SIGNAL(triggered()), this, SLOT(start()));
+    connect(ui->startButton, SIGNAL(clicked()), this, SLOT(start()));
+    connect(ui->actionSTART,  SIGNAL(triggered()), this, SLOT(start()));
     connect(ui->actionPAUSE,  SIGNAL(triggered()), this, SLOT(pause()));
     connect(ui->actionRESUME,  SIGNAL(triggered()), this, SLOT(resume()));
     connect(ui->actionEXIT,  SIGNAL(triggered()), this, SLOT(exit()));
-
-    connect(ui->pushButton,  SIGNAL(clicked()), this, SLOT(start()));
 }
 
 MainWindow::~MainWindow()

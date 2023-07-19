@@ -8,7 +8,7 @@ Car::Car()
 {
     angle = 90;
     speed = 0;
-    max_speed = 2;
+    max_speed = 3;
     run_count = 1;
 }
 

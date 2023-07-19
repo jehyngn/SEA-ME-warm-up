@@ -25,8 +25,8 @@ void game::startRace()
         carThread->moveToThread(thread);
         carThread->keymapping(&keys[i][0],&keys[i][1],&keys[i][2],&keys[i][3]);
 
-        connect(thread, &QThread::started, carThread, &CarThread::update);
         connect(car, &Car::positionChanged, carThread, &CarThread::run);
+        connect(thread, &QThread::started, carThread, &CarThread::update);
         connect(carThread, &CarThread::finished, thread, &QThread::quit);
         connect(carThread, &CarThread::finished, carThread, &CarThread::deleteLater);
         connect(thread, &QThread::finished, thread, &QThread::deleteLater);
